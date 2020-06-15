@@ -1,20 +1,23 @@
-
 /**
+ * ************************************************************************************************
+ * Tree
  * 
  * @param myCanvas
  * @returns
  */
 function Tree(myCanvas) {
+
 	this.myCanvas = (myCanvas == undefined ? null : myCanvas);
 	this.dataMap = new Map();
 	this.rootList = [];
 	this.allList = [];
+
 }
 
 /**
  * 특정 문자열 반복한다.
  */
-Tree.repeat = function(count, ch = ' ') {
+Tree.repeat = function(count, ch) {
 	var ret = "";
 	for (var i = 0; i < count; i++) {
 		ret += ch;
@@ -37,7 +40,7 @@ Tree.prototype.printVar = function() {
  *            하위데이터
  * 
  */
-Tree.prototype.addChild = function(parentId, childId, data) {
+Tree.prototype.addItem = function(parentId, childId, data) {
 
 	var child = new TreeItem(childId, data);
 	var parent = this.getData(parentId);
@@ -47,34 +50,34 @@ Tree.prototype.addChild = function(parentId, childId, data) {
 	} else {
 		this.rootList.push(child);
 	}
-  
+
 	this.allList.push(child);
 	this.dataMap.set(childId, child);
 }
 
 Tree.test = function(tree) {
 
-	tree.addChild(null, "100", "100");
-	tree.addChild("100", "110", "110");
-	tree.addChild("100", "120", "120");
-	tree.addChild("120", "121", "121");
-	
-	tree.addChild(null, "200", "200");
-	tree.addChild(null, "300", "300");
-	tree.addChild("300", "310", "310");
-	tree.addChild("300", "320", "320");
-	tree.addChild("320", "321", "321");
-	tree.addChild(null, "400", "400");
+	tree.addItem(null, "100", "100");
+	tree.addItem("100", "110", "110");
+	tree.addItem("100", "120", "120");
+	tree.addItem("120", "121", "121");
+
+	tree.addItem(null, "200", "200");
+	tree.addItem(null, "300", "300");
+	tree.addItem("300", "310", "310");
+	tree.addItem("300", "320", "320");
+	tree.addItem("320", "321", "321");
+	tree.addItem(null, "400", "400");
 
 	var parent = 400;
 	for (var i = parent + 1; i <= 405; i++) {
-		tree.addChild(parent + "", i + "", i + "");
+		tree.addItem(parent + "", i + "", i + "");
 		parent = i;
 	}
 
-	tree.addChild("320", "322", "322");
-	tree.addChild("320", "323", "323");
-	tree.addChild("320", "324", "324");
+	tree.addItem("320", "322", "322");
+	tree.addItem("320", "323", "323");
+	tree.addItem("320", "324", "324");
 
 	var maker = new XYDateMaker(100, 100, 80, 30, tree);
 	var list = maker.make(XYDateMaker.TOP_REL, XYDateMaker.FIRST_LOWER);
@@ -84,39 +87,38 @@ Tree.test = function(tree) {
 
 Tree.test2 = function(tree) {
 
-	tree.addChild(null, "AR1", "AR1");
-	tree.addChild(null, "AR2", "AR2");
-	tree.addChild("AR1", "CMTS#1", "CMTS#1");
-	tree.addChild("AR1", "CMTS#2", "CMTS#2");
-	tree.addChild("AR2", "CMTS#3", "CMTS#3");
-	tree.addChild("AR2", "CMTS#4", "CMTS#4");
+	tree.addItem(null, "AR1", "AR1");
+	tree.addItem(null, "AR2", "AR2");
+	tree.addItem("AR1", "CMTS#1", "CMTS#1");
+	tree.addItem("AR1", "CMTS#2", "CMTS#2");
+	tree.addItem("AR2", "CMTS#3", "CMTS#3");
+	tree.addItem("AR2", "CMTS#4", "CMTS#4");
 
-	tree.addChild("CMTS#1", "CELL", "CELL");
-	tree.addChild("CELL", "CM#1", "CM#1");
-	tree.addChild("CELL", "CM#2", "CM#2");
-	tree.addChild("CELL", "CM#3", "CM#3");
-	tree.addChild("CELL", "CM#4", "CM#4");
-	tree.addChild("CELL", "CM#5", "CM#5");
-	tree.addChild("CELL", "CM#6", "CM#6");
+	tree.addItem("CMTS#1", "CELL", "CELL");
+	tree.addItem("CELL", "CM#1", "CM#1");
+	tree.addItem("CELL", "CM#2", "CM#2");
+	tree.addItem("CELL", "CM#3", "CM#3");
+	tree.addItem("CELL", "CM#4", "CM#4");
+	tree.addItem("CELL", "CM#5", "CM#5");
+	tree.addItem("CELL", "CM#6", "CM#6");
 
-	tree.addChild("CM#3", "AP#31", "AP#31");
-	tree.addChild("CM#3", "AP#32", "AP#32");
-	tree.addChild("CM#3", "AP#33", "AP#33");
-	tree.addChild("CM#3", "AP#34", "AP#34");
+	tree.addItem("CM#3", "AP#31", "AP#31");
+	tree.addItem("CM#3", "AP#32", "AP#32");
+	tree.addItem("CM#3", "AP#33", "AP#33");
+	tree.addItem("CM#3", "AP#34", "AP#34");
 
-	tree.addChild("CM#5", "AP#51", "AP#51");
-	tree.addChild("CM#5", "AP#52", "AP#52");
+	tree.addItem("CM#5", "AP#51", "AP#51");
+	tree.addItem("CM#5", "AP#52", "AP#52");
 
-	tree.addChild("AP#32", "STB#1", "STB#1");
-	tree.addChild("AP#32", "STB#2", "STB#2");
+	tree.addItem("AP#32", "STB#1", "STB#1");
+	tree.addItem("AP#32", "STB#2", "STB#2");
 
-	tree.addChild("AP#34", "STB#3", "STB#3");
-	tree.addChild("AP#34", "STB#4", "STB#4");
+	tree.addItem("AP#34", "STB#3", "STB#3");
+	tree.addItem("AP#34", "STB#4", "STB#4");
 
 	var maker = new XYDateMaker(100, 100, 80, 30, tree);
 	var list = maker.make(XYDateMaker.TOP_REL, XYDateMaker.FIRST_LOWER);
 	tree.getXYPrint(list);
-
 
 }
 
@@ -210,7 +212,7 @@ Tree.prototype.getXYPrint = function(list) {
 			}
 		}
 
-		ret += Tree.repeat(data.x);
+		ret += Tree.repeat(data.x, " ");
 		ret += data;
 		ret += "\n";
 
@@ -221,12 +223,9 @@ Tree.prototype.getXYPrint = function(list) {
 
 }
 
-/*
+/**
  * ************************************************************************************************
  * TreeItem
- */
-
-/**
  * 
  * @param treeId
  * @param data
@@ -279,12 +278,9 @@ TreeItem.prototype.toString = function() {
 	return this.level + ")" + this.treeId;
 }
 
-/*
+/**
  * ************************************************************************************************
  * XYData
- */
-
-/**
  * 
  * @param x
  * @param y
@@ -302,12 +298,21 @@ XYData.prototype.toString = function() {
 	return "(" + this.x + "," + this.y + ")" + this.data;
 }
 
-/*
- * ************************************************************************************************
- * XYDataMaker
- */
+XYData.prototype.getX = function() {
+	return this.x;
+}
+
+XYData.prototype.getY = function() {
+	return this.y;
+}
+
+XYData.prototype.getDate = function() {
+	return this.data;
+}
 
 /**
+ * ************************************************************************************************
+ * XYDataMaker
  * 
  * @param baseX
  * @param baseY
@@ -318,7 +323,7 @@ XYData.prototype.toString = function() {
  */
 function XYDateMaker(baseX, baseY, gapX, gapY, tree) {
 	this.baseX = baseX;
-	 this.baseY = baseY;
+	this.baseY = baseY;
 	this.gapX = gapX;
 	this.gapY = gapY;
 	this.tree = tree;
@@ -407,21 +412,19 @@ XYDateMaker.prototype.makeRel = function() {
 	var count = 0;
 	var nextY = this.baseY;
 	var data;
-	
+
 	for (var i = 0; i < tree.rootList.length; i++) {
-		
+
 		data = tree.rootList[i];
 
 		// 띄워서 그리기
-		count = this.makeXyDataRel(this.baseX,
-				nextY, this.gapX, this.gapY, data,
-				retList);
-		
-		
-		if ( count > 1 ) {
-			nextY += ( this.gapY * count );
+		count = this.makeXyDataRel(this.baseX, nextY, this.gapX, this.gapY,
+				data, retList);
+
+		if (count > 1) {
+			nextY += (this.gapY * count);
 		} else {
-		nextY += this.gapY;
+			nextY += this.gapY;
 		}
 
 	}
