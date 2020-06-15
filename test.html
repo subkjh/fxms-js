@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<canvas id="myCanvas" width="800" height="600"
+		style="border: 1px solid #d3d3d3;">
+		Your browser does not support the HTML canvas tag.</canvas>
+
+
+
+	<script src="Test.js"></script>
+	<script src="Tree.js"></script>
+
+	<script>
+		var myObj = {
+			name : "John",
+			age : 31,
+			city : "New York"
+		};
+		var myJSON = JSON.stringify(myObj);
+		console.log(myJSON);
+
+		var test = new Test();
+		test.log("aaaaaaaa");
+
+		var tree = new Tree("myCanvas");
+		tree.printVar();
+		Tree.test(tree);
+		
+	</script>
+
+
+	<h2>Convert a JavaScript object into a JSON string, and send it to
+		the server.</h2>
+
+
+
+
+</body>
+</html>
